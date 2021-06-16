@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="base.main_partner" model="res.partner">
+        <!-- Make partner readable from other companies -->
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="base.main_company" model="res.company">
+        <field name="name">SprintIT Oy</field>
+        <field name="company_registry">2625244-1</field>
+        <field name="vat">FI26252441</field>
+        <field name="einvoice_address">003726252441</field>
+        <field name="einvoice_operator">003723327487</field>
+        <field name="street">Atomitie 5</field>
+        <field name="city">Helsinki</field>
+        <field name="zip">00370</field>
+        <field name="email">info@sprintit.fi</field>
+        <field name="website">www.sprintit.fi</field>
+        <field name="country_id" ref="base.fi"/>
+        <field name="state_id" eval="False"/>
+    </record>
+
+    <!--  Multi Company -->
+
+    <record id="res_partner_company_1" model="res.partner">
+        <field name="name">SprintIT Finland Oy</field>
+        <field name="is_company">1</field>
+        <field eval="1" name="active"/>
+        <field name="company_id" eval="False"/>
+        <field name="company_registry">3001049-6</field>
+        <field name="vat">FI30010496</field>
+        <field name="einvoice_address">003730010496</field>
+        <field name="einvoice_operator">003723327487</field>
+        <field name="street">Atomitie 5</field>
+        <field name="city">Helsinki</field>
+        <field name="zip">00370</field>
+        <field name="email">info@sprintit.fi</field>
+        <field name="website">www.sprintit.fi</field>
+        <field name="country_id" ref="base.fi"/>
+        <field name="state_id" eval="False"/>
+    </record>
+
+    <record id="res_company_1" model="res.company">
+        <field name="currency_id" ref="base.EUR"/>
+        <field name="partner_id" ref="res_partner_company_1"/>
+        <field name="name">SprintIT Finland Oy</field>
+        <field name="user_ids" eval="[(4, ref('base.user_admin')), (4, ref('base.user_demo'))]"/>
+    </record>
+
+</odoo>
