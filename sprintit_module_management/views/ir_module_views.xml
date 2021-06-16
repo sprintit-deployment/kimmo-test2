@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="module_module_package_tree_view" model="ir.ui.view">
+        <field name="name">ir.module.module.package.tree</field>
+        <field name="model">ir.module.module</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <tree string="Modules" decoration-danger="state=='uninstalled'" decoration-warning="state not in ['uninstalled', 'installed']" decoration-success="state=='installed'">
+                <field name="shortdesc"/>
+                <field name="name"/>
+                <field name="author"/>
+                <field name="installed_version"/>
+                <field name="demo" groups="base.group_no_one"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="module_form" model="ir.ui.view">
+        <field name="name">ir.module.module.form</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='demo']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Packages">
+                    <field name="module_package_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
